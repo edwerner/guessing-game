@@ -80,3 +80,6 @@ div.message.success {
     background: #FAFFE4;
     border: 1px solid #DDFF6F;
 }
+span.global-average-headline {
+	text-style: bold;
+}

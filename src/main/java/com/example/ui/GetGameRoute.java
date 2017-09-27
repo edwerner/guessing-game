@@ -23,6 +23,7 @@ public class GetGameRoute implements TemplateViewRoute {
   static final String GUESSES_LEFT_ATTR = "guessesLeft";
   static final String TITLE = "Number Guess Game";
   static final String VIEW_NAME = "game_form.ftl";
+  static final String GLOBAL_AVERAGE_OF_WINS_ATTR = "globalAverageOfWins";
 
   private final GameCenter gameCenter;
 
@@ -52,6 +53,8 @@ public class GetGameRoute implements TemplateViewRoute {
     vm.put(GetHomeRoute.TITLE_ATTR, TITLE);
     vm.put(GAME_BEGINS_ATTR, game.isGameBeginning());
     vm.put(GUESSES_LEFT_ATTR, game.guessesLeft());
+    // report global average of wins
+    vm.put(GLOBAL_AVERAGE_OF_WINS_ATTR, game.getGlobalAverageOfGamesWon());
     // render the Game Form view
     return new ModelAndView(vm, VIEW_NAME);
   }
