@@ -33,7 +33,7 @@ public class GetHomeRoute implements TemplateViewRoute {
   static final String NEW_SESSION_ATTR = "newSession";
   static final String TITLE = "Welcome to the Guessing Game";
   static final String VIEW_NAME = "home.ftl";
-  static final String GLOBAL_AVERAGE_OF_WINS_ATTR = "globalAverageOfWins";
+  static final String GLOBAL_AVERAGE_OF_WINS_ATTR = "globalWinsAverage";
 
   //
   // Attributes
@@ -65,7 +65,6 @@ public class GetHomeRoute implements TemplateViewRoute {
   public ModelAndView handle(Request request, Response response) {
     // retrieve the HTTP session
     final Session httpSession = request.session();
-  System.out.println("YOU WON: " + request.attribute("youWon"));
 
     // start building the View-Model
     final Map<String, Object> vm = new HashMap<>();
