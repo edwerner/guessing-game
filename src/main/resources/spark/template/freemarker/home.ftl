@@ -13,7 +13,7 @@
       <p>
         ${gameStatsMessage}
       </p>
-      <h4>Global Win Average for User One: ${globalWinsAverage}</h4>
+      <h4>Global Win Average for User One: ${globalWinAverage}</h4>
       <#if newSession>
         <p>
           <a href="/game">Want to play a game?!?</a>

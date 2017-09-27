@@ -60,6 +60,7 @@ public class GuessGame {
 	 */
 	public GuessGame() {
 		this(5);
+//	    this(RANDOM.nextInt(UPPER_BOUND));
 	}
 
 	//

@@ -112,8 +112,6 @@ public class GameCenter {
 
 	public void updateGlobalWinAverage() {
 		if (numberOfWins > 0) {
-			System.out.println("Number wins: " + numberOfWins);
-			System.out.println("total games: " + totalGames);
 			averageGamesWon = (double) numberOfWins / (double) totalGames;
 		}
 	}

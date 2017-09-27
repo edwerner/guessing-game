@@ -101,6 +101,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 		final GuessGame game = gameCenter.get(session);
 		vm.put(GetGameRoute.GAME_BEGINS_ATTR, game.isGameBeginning());
 		vm.put(GetGameRoute.GUESSES_LEFT_ATTR, game.guessesLeft());
+		vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
 
 		// retrieve request parameter
 		final String guessStr = request.queryParams(GUESS_PARAM);
@@ -128,6 +129,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 		// did you win?
 		if (correct) {
 			gameCenter.incrementNumberOfWins();
+			gameCenter.updateGlobalWinAverage();
 			return youWon(vm, session);
 		}
 		// no, but you have more guesses?
