@@ -33,8 +33,6 @@ public class GuessGame {
 
 	private final int numberToGuess;
 	private int howManyGuessesLeft = NUM_OF_GUESSES;
-	private int globalWinsAverage = 10;
-
 	//
 	// Constructors
 	//
@@ -61,7 +59,7 @@ public class GuessGame {
 	 * Create a guessing game with a random number.
 	 */
 	public GuessGame() {
-		this(RANDOM.nextInt(UPPER_BOUND));
+		this(5);
 	}
 
 	//
@@ -137,9 +135,5 @@ public class GuessGame {
 	@Override
 	public synchronized String toString() {
 		return "{Game " + numberToGuess + "}";
-	}
-
-	public int getGlobalAverageOfGamesWon() {
-		return globalWinsAverage;
 	}
 }

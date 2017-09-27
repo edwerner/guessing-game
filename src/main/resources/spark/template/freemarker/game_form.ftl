@@ -8,7 +8,7 @@
     <h1>${title}</h1>
 
     <div class="body">
-      <h4>Global Average of Wins: ${globalAverageOfWins}</h4>
+    
       <h4>Make <#if isFirstGuess>a<#else>Another</#if> Guess</h4>
       
       <#if message??>

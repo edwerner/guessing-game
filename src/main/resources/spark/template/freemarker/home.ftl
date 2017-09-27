@@ -19,6 +19,7 @@
           <a href="/game">Want to play a game?!?</a>
         </p>
       <#else>
+      	<h4>Global Average of Wins: ${globalAverageOfWins}</h4>
         <#if youWon>
           <p>
             Congratulations!  You must have read my mind.

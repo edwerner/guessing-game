@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.jetty.util.log.Log;
+
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -34,6 +36,12 @@ public class PostGuessRoute implements TemplateViewRoute {
 	static final String VIEW_NAME = "game_form.ftl";
 
 	//
+	// Attributes
+	//
+
+	private final GameCenter gameCenter;
+
+	//
 	// Static methods
 	//
 
@@ -53,13 +61,6 @@ public class PostGuessRoute implements TemplateViewRoute {
 				.format("You entered %s; make a guess between zero and nine.",
 						guessStr);
 	}
-
-	//
-	// Attributes
-	//
-
-	private final GameCenter gameCenter;
-	static int globalNumberOfGamesWon;
 
 	//
 	// Constructor
@@ -100,7 +101,6 @@ public class PostGuessRoute implements TemplateViewRoute {
 		final GuessGame game = gameCenter.get(session);
 		vm.put(GetGameRoute.GAME_BEGINS_ATTR, game.isGameBeginning());
 		vm.put(GetGameRoute.GUESSES_LEFT_ATTR, game.guessesLeft());
-		vm.put(GetGameRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, game.getGlobalAverageOfGamesWon());
 
 		// retrieve request parameter
 		final String guessStr = request.queryParams(GUESS_PARAM);
@@ -127,6 +127,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 
 		// did you win?
 		if (correct) {
+			gameCenter.incrementNumberOfWins();
 			return youWon(vm, session);
 		}
 		// no, but you have more guesses?
@@ -168,6 +169,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 		vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR,
 				gameCenter.getGameStatsMessage());
 		vm.put(YOU_WON_ATTR, youWon);
+		vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
 		return new ModelAndView(vm, GetHomeRoute.VIEW_NAME);
 	}
 }

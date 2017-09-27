@@ -33,6 +33,10 @@ public class GameCenter {
 	//
 
 	private int totalGames = 0;
+	private int numberOfWins;
+
+	private double averageGamesWon;
+
 
 	//
 	// Public methods
@@ -76,6 +80,7 @@ public class GameCenter {
 		// do some application-wide book-keeping
 		synchronized (this) { // protect the critical code
 			totalGames++;
+			updateGlobalWinAverage();
 		}
 	}
 
@@ -96,5 +101,23 @@ public class GameCenter {
 
 	public int getTotalGamesCount() {
 		return totalGames;
+	}
+
+	public void incrementNumberOfWins() {
+		numberOfWins++;
+	}
+	public int getNumberOfWins() {
+		return numberOfWins;
+	}
+
+	public void updateGlobalWinAverage() {
+		if (numberOfWins > 0) {
+			System.out.println("Number wins: " + numberOfWins);
+			System.out.println("total games: " + totalGames);
+			averageGamesWon = (double) numberOfWins / (double) totalGames;
+		}
+	}
+	public double getGlobalAverageGamesWon() {
+		return averageGamesWon;
 	}
 }
