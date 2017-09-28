@@ -21,6 +21,7 @@ public class GetGameRoute implements TemplateViewRoute {
 
   static final String GAME_BEGINS_ATTR = "isFirstGuess";
   static final String GUESSES_LEFT_ATTR = "guessesLeft";
+  static final String GAME_STATS_MESSAGE = "gameStatsMessage";
   static final String TITLE = "Number Guess Game";
   static final String VIEW_NAME = "game_form.ftl";
 

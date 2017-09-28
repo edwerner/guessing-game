@@ -9,6 +9,8 @@
 
     <div class="body">
       <h4>Global Win Average: ${globalWinAverage}</h4>
+      <h4>Game Stats</h4>
+      <p>${gameStatsMessage}</p?
       <h4>Make <#if isFirstGuess>a<#else>Another</#if> Guess</h4>
       
       <#if message??>
