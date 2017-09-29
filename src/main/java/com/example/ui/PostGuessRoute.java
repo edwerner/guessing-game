@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.eclipse.jetty.util.log.Log;
-
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -101,6 +99,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 		final GuessGame game = gameCenter.get(session);
 		vm.put(GetGameRoute.GAME_BEGINS_ATTR, game.isGameBeginning());
 		vm.put(GetGameRoute.GUESSES_LEFT_ATTR, game.guessesLeft());
+	    vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
 		vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
 
 		// retrieve request parameter
@@ -171,7 +170,6 @@ public class PostGuessRoute implements TemplateViewRoute {
 		vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR,
 				gameCenter.getGameStatsMessage());
 		vm.put(YOU_WON_ATTR, youWon);
-		vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
 		return new ModelAndView(vm, GetHomeRoute.VIEW_NAME);
 	}
 }

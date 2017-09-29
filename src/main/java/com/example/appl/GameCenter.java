@@ -22,6 +22,7 @@ public class GameCenter {
 	final static String NO_GAMES_MESSAGE = "No games has been played so far.";
 	final static String ONE_GAME_MESSAGE = "One game has been played so far.";
 	final static String GAMES_PLAYED_FORMAT = "There have been %d games played.";
+	final static String GAME_STATS_MSG_ATTR = "gameStatsMessage";
 
 	/**
 	 * The user session attribute name that points to a game object.

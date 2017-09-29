@@ -57,6 +57,11 @@ public class WebServer {
    */
   public static final String GAME_URL = "/game";
 
+  /**
+   * The URL pattern to request the Game page.
+   */
+  public static final String USERS_URL = "/users";
+
   //
   // Attributes
   //
@@ -142,6 +147,9 @@ public class WebServer {
 
     // Shows Game page.
     get(GAME_URL, new GetGameRoute(gameCenter), templateEngine);
+
+    // Shows Game page.
+    get(USERS_URL, new GetUsersRoute(gameCenter), templateEngine);
 
     // Post a guess.
     post("/guess", new PostGuessRoute(gameCenter), templateEngine);

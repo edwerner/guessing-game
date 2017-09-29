@@ -83,3 +83,7 @@ div.message.success {
 span.global-average-headline {
 	text-style: bold;
 }
+div.user {
+	background: #FFFFFF;
+	padding: 10px;
+}
