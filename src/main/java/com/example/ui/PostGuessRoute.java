@@ -100,7 +100,6 @@ public class PostGuessRoute implements TemplateViewRoute {
 		vm.put(GetGameRoute.GAME_BEGINS_ATTR, game.isGameBeginning());
 		vm.put(GetGameRoute.GUESSES_LEFT_ATTR, game.guessesLeft());
 	    vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
-		vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
 
 		// retrieve request parameter
 		final String guessStr = request.queryParams(GUESS_PARAM);

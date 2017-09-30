@@ -28,7 +28,6 @@ public class GetUsersRoute implements TemplateViewRoute {
 	static final String NEW_SESSION_ATTR = "newSession";
 	static final String TITLE = "Global Wins Average for All Users";
 	static final String VIEW_NAME = "users.ftl";
-	static final String GLOBAL_AVERAGE_OF_WINS_ATTR = "globalWinAverage";
 
 	//
 	// Attributes
@@ -62,7 +61,7 @@ public class GetUsersRoute implements TemplateViewRoute {
 		// start building the View-Model
 		final Map<String, Object> vm = new HashMap<>();
 		vm.put(TITLE_ATTR, TITLE);
-		vm.put(GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
+		vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getAverageGamesWonMessage());
 		// render the Game Form view
 		vm.put(NEW_SESSION_ATTR, true);
 		return new ModelAndView(vm, VIEW_NAME);

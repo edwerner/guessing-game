@@ -19,10 +19,10 @@ public class GameCenter {
 	// Constants
 	//
 
-	final static String NO_GAMES_MESSAGE = "No games has been played so far.";
-	final static String ONE_GAME_MESSAGE = "One game has been played so far.";
-	final static String GAMES_PLAYED_FORMAT = "There have been %d games played.";
-	final static String GAME_STATS_MSG_ATTR = "gameStatsMessage";
+	final static String NO_GAMES_MESSAGE = "No game stats yet.";
+	final static String NO_GAMES_WON_MESSAGE = "You have not won a game, yet. But I *feel* your luck changing";
+	final static String GLOBAL_AVERAGE_NUMBER_OF_GAMES_WON_FORMAT = "You have won an average of %.1f of this session's %d games";
+	final static String GLOBAL_AVERAGE_NUMBER_OF_GAMES_WON_FORMAT_USERS = "%.1f";
 
 	/**
 	 * The user session attribute name that points to a game object.
@@ -35,8 +35,7 @@ public class GameCenter {
 
 	private int totalGames = 0;
 	private int numberOfWins;
-
-	private double averageGamesWon;
+	private double globalAverageOfGamesWon;
 
 
 	//
@@ -91,13 +90,19 @@ public class GameCenter {
 	 * @return The message to the user about global game statistics.
 	 */
 	public synchronized String getGameStatsMessage() {
-		if (totalGames > 1) {
-			return String.format(GAMES_PLAYED_FORMAT, totalGames);
-		} else if (totalGames == 1) {
-			return ONE_GAME_MESSAGE;
-		} else {
+		if (totalGames == 0) {
 			return NO_GAMES_MESSAGE;
 		}
+		else if (getGlobalAverageGamesWon() > 0) {
+			return String.format(GLOBAL_AVERAGE_NUMBER_OF_GAMES_WON_FORMAT, getGlobalAverageGamesWon(), totalGames);
+		}
+		else {
+			return NO_GAMES_WON_MESSAGE;
+		}
+	}
+
+	public String getAverageGamesWonMessage() {
+		return String.format(GLOBAL_AVERAGE_NUMBER_OF_GAMES_WON_FORMAT_USERS, getGlobalAverageGamesWon());
 	}
 
 	public int getTotalGamesCount() {
@@ -113,10 +118,10 @@ public class GameCenter {
 
 	public void updateGlobalWinAverage() {
 		if (numberOfWins > 0) {
-			averageGamesWon = (double) numberOfWins / (double) totalGames;
+			globalAverageOfGamesWon = (double) numberOfWins / (double) totalGames;
 		}
 	}
 	public double getGlobalAverageGamesWon() {
-		return averageGamesWon;
+		return globalAverageOfGamesWon;
 	}
 }

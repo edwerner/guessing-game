@@ -54,7 +54,6 @@ public class GetGameRoute implements TemplateViewRoute {
     vm.put(GAME_BEGINS_ATTR, game.isGameBeginning());
     vm.put(GUESSES_LEFT_ATTR, game.guessesLeft());
     vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
-    vm.put(GetHomeRoute.GLOBAL_AVERAGE_OF_WINS_ATTR, gameCenter.getGlobalAverageGamesWon());
     // render the Game Form view
     return new ModelAndView(vm, VIEW_NAME);
   }

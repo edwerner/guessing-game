@@ -9,7 +9,7 @@
     <div class="body">
 		<div class="user">
 		  <h4>User One</h4>
-		  <p>${globalWinAverage}</p>
+		  <p>${gameStatsMessage}</p>
 		</div>
     </div>
     <p>
