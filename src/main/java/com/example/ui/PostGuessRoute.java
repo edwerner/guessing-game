@@ -60,6 +60,31 @@ public class PostGuessRoute implements TemplateViewRoute {
 						guessStr);
 	}
 
+	/**
+	 * Make an hint message stating that the actual number
+	 * is lower or higher than the number guessed.
+	 */
+	static String makeHigherOrLowerMessage(final String guessStr) {
+		return String
+				.format("You entered %s; make a guess between zero and nine.",
+						guessStr);
+	}
+
+	/**
+	 * Concatenate a higher or lower message string based on the number guessed.
+	 * 
+	 * @return The higher or lower message string based on the number guessed.
+	 */
+	private String getHigherOrLowerMessage(final String guessStr) {
+		String higherOrLowerMessage;
+		if (gameCenter.getNumberToGuess() < Integer.valueOf(guessStr)) {
+			higherOrLowerMessage = BAD_GUESS + " The number is lower than your guess";
+		} else {
+			higherOrLowerMessage = BAD_GUESS + " The number is higher than your guess";
+		}
+		return higherOrLowerMessage;
+	}
+
 	//
 	// Constructor
 	//
@@ -133,7 +158,7 @@ public class PostGuessRoute implements TemplateViewRoute {
 		// no, but you have more guesses?
 		else if (game.hasMoreGuesses()) {
 			vm.put(GetGameRoute.GUESSES_LEFT_ATTR, game.guessesLeft());
-			return error(vm, BAD_GUESS);
+			return error(vm, getHigherOrLowerMessage(guessStr));
 		}
 		// otherwise, you lost
 		else {

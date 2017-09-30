@@ -36,6 +36,7 @@ public class GameCenter {
 	private int totalGames = 0;
 	private int numberOfWins;
 	private double globalAverageOfGamesWon;
+	private GuessGame game;
 
 
 	//
@@ -55,7 +56,7 @@ public class GameCenter {
 		// validation
 		Objects.requireNonNull(session, "session must not be null");
 		//
-		GuessGame game = session.attribute(GAME_ID);
+		game = session.attribute(GAME_ID);
 		if (game == null) {
 			// create new game
 			game = new GuessGame();
@@ -101,27 +102,65 @@ public class GameCenter {
 		}
 	}
 
+	/**
+	 * Get a user message about global average number of games won.
+	 *
+	 * @return The message to the user about global number of games won.
+	 */
 	public String getAverageGamesWonMessage() {
 		return String.format(GLOBAL_AVERAGE_NUMBER_OF_GAMES_WON_FORMAT_USERS, getGlobalAverageGamesWon());
 	}
-
+	
+	/**
+	 * Get an integer representing total games played.
+	 *
+	 * @return The integer of total games played.
+	 */
 	public int getTotalGamesCount() {
 		return totalGames;
 	}
 
+	/**
+	 * Increment the integer representing total number of wins.
+	 */
 	public void incrementNumberOfWins() {
 		numberOfWins++;
 	}
+	
+
+	/**
+	 * Get an integer representing total number of wins.
+	 *
+	 * @return The integer of total number of wins.
+	 */
 	public int getNumberOfWins() {
 		return numberOfWins;
 	}
 
+	/**
+	 * Calculate global win average for current session.
+	 */
 	public void updateGlobalWinAverage() {
 		if (numberOfWins > 0) {
 			globalAverageOfGamesWon = (double) numberOfWins / (double) totalGames;
 		}
 	}
+
+	/**
+	 * Get a double representing the global average of games won.
+	 *
+	 * @return The double of total number of wins.
+	 */
 	public double getGlobalAverageGamesWon() {
 		return globalAverageOfGamesWon;
+	}
+	
+	/**
+	 * Get an integer representing the number to guess for the current game.
+	 *
+	 * @return The integer representing the number to guess for the current game.
+	 */
+	public int getNumberToGuess() {
+		return game.getNumberToGuess();
 	}
 }

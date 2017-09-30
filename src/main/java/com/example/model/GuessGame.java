@@ -59,8 +59,7 @@ public class GuessGame {
 	 * Create a guessing game with a random number.
 	 */
 	public GuessGame() {
-		this(5);
-//	    this(RANDOM.nextInt(UPPER_BOUND));
+	    this(RANDOM.nextInt(UPPER_BOUND));
 	}
 
 	//
@@ -136,5 +135,16 @@ public class GuessGame {
 	@Override
 	public synchronized String toString() {
 		return "{Game " + numberToGuess + "}";
+	}
+	
+
+	
+	/**
+	 * Get an integer representing the number to guess for the current game.
+	 *
+	 * @return The integer representing the number to guess for the current game.
+	 */
+	public int getNumberToGuess() {
+		return numberToGuess;
 	}
 }
